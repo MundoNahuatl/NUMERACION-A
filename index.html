@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Video protegido</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <img src="logos/master.png" alt="Logo izquierdo" id="logo-izquierdo">
+  <img src="logos/master.png" alt="Logo derecho" id="logo-derecho">
+
+  <h1>BIENVENIDO A MUNDO NAHUAT</h1>
+  <h2>CLASE: NUMERACIÓN, FAMILIA Y FRASES</h2>  
+<a href="https://wa.me/525573464771" target="_blank">
+  <button style="padding: 10px 20px; background-color: #25D366; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
+    Enviar mensaje por WhatsApp
+  </button>
+</a>
+
+  <!-- FORMULARIO visible al inicio -->
+  <div id="formulario-container" style="margin-top: 20px;">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdl2LtMyS1IcqusjqgopoU84MOw8NfntN7UG-4FksELHI1bPA/viewform?embedded=true" width="640" height="407" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+ <button class="btn-continuar" onclick="mostrarPassword()">CONTINUAR</button>
+  </div>
+
+  <!-- CONTENEDOR DE CONTRASEÑA oculto al inicio -->
+  <div id="password-container" style="display: none; margin-top: 20px;">
+    <p>Introduce la contraseña para ver el video:</p>
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="verificarContrasena()">ENTRAR</button>
+    <p id="mensaje" style="color: red;"></p>
+  </div>
+
+  <!-- VIDEO oculto al inicio -->
+  <div id="video-container" style="display: none; margin-top: 20px;">
+    <iframe 
+      src="https://player.vimeo.com/video/1086597126?h=384994588e" 
+      width="960" height="540"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+<script>
+  // Muestra el contenedor de contraseña y oculta el formulario
+  function mostrarPassword() {
+    document.getElementById("formulario-container").style.display = "none";
+    document.getElementById("password-container").style.display = "block";
+  }
+
+  function verificarContrasena() {
+    const password = document.getElementById("password").value;
+    const correcta = "SIU";
+
+    if (password === correcta) {
+      document.getElementById("mensaje").textContent = "";
+      document.getElementById("password-container").style.display = "none";
+      document.getElementById("video-container").style.display = "block";
+    } else {
+      document.getElementById("mensaje").textContent = "Contraseña incorrecta";
+    }
+  }
+
+  // Enter también funciona para la contraseña
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("password").addEventListener("keyup", function (event) {
+      if (event.key === "Enter") {
+        verificarContrasena();
+      }
+    });
+  });
+</script>
+</body>
+</html>
