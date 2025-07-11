@@ -38,20 +38,41 @@
     </iframe>
   </div>
 
+<!-- MENSAJE DE EXPIRADO / NO DISPONIBLE -->
+  <div id="mensaje-fechas" style="margin-top: 20px; color: rgb(11, 11, 11); font-weight: bold;"></div>
+
 <script>
+  const CONTRASENA_CORRECTA = "claseuno";
+  const FECHA_INICIO = new Date("2025-07-09T00:00:00"); // AAAA-MM-DD
+  const FECHA_FIN = new Date("2025-07-11T23:59:59");
+  const HOY = new Date();
+  const LINK_VIDEO = "https://player.vimeo.com/video/1089389449?h=c71f617420";
+
   function verificarContrasena() {
     const password = document.getElementById("password").value;
-    const correcta = "202511";
 
-    if (password === correcta) {
+    if (password === CONTRASENA_CORRECTA) {
+      // Validar fechas
+      if (HOY < FECHA_INICIO) {
+        document.getElementById("mensaje-fechas").textContent = "⏳ Aún no está disponible esta clase. Inicia el " + FECHA_INICIO.toLocaleDateString();
+        return;
+      }
+      if (HOY > FECHA_FIN) {
+        document.getElementById("mensaje-fechas").textContent = "⛔ Su tiempo ha finalizado. Esta clase ya no está disponible.";
+        return;
+      }
+
+      // Mostrar video
       document.getElementById("mensaje").textContent = "";
+      document.getElementById("mensaje-fechas").textContent = "";
       document.getElementById("password-container").style.display = "none";
       document.getElementById("video-container").style.display = "block";
+      document.getElementById("video-frame").src = LINK_VIDEO;
+
     } else {
       document.getElementById("mensaje").textContent = "Contraseña incorrecta";
     }
   }
-
   // Enter también funciona para la contraseña
   document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("password").addEventListener("keyup", function (event) {
