@@ -1,9 +1,13 @@
+/* Estilos generales del cuerpo */
 body {
+  margin: 0;
+  padding: 0 10px;
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #87eb9e;
 }
 
+/* Contenedor de videos */
 .video-container {
   display: flex;
   justify-content: center;
@@ -12,34 +16,43 @@ body {
   padding: 20px;
 }
 
+/* Video HTML5 */
 video {
   max-width: 1080px;
   width: 100%;
   border: 2px solid #333;
-  border-radius: 8px
+  border-radius: 8px;
 }
+
+/* iFrame (YouTube, Vimeo) */
 iframe {
-  max-width: 100%;
+  width: 100%;
+  max-width: 960px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: none;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
-#logo-izquierdo {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  width: 100px;
-  z-index: 9999;
-}
 
+/* Logos en escritorio */
+#logo-izquierdo,
 #logo-derecho {
   position: fixed;
   top: 10px;
-  right: 10px;
-  width: 100px;
+  width: 150px;
   z-index: 9999;
 }
 
-/* Estilo para el botón CONTINUAR */
+#logo-izquierdo {
+  left: 10px;
+}
+
+#logo-derecho {
+  right: 10px;
+}
+
+/* Botón CONTINUAR */
 .btn-continuar {
   padding: 20px 40px;
   font-size: 24px;
@@ -58,19 +71,12 @@ iframe {
   transform: scale(1.05);
 }
 
-/* Centrar el contenido del contenedor del formulario */
+/* Contenedor centrado del formulario */
 #formulario-container {
   text-align: center;
 }
 
-iframe {
-  width: 100%;
-  max-width: 960px;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  border: none;
-}
-
+/* RESPONSIVE para pantallas pequeñas */
 @media (max-width: 600px) {
   h1, h2, h3 {
     font-size: 1.5rem;
@@ -82,13 +88,17 @@ iframe {
     width: 90%;
   }
 
-  #logo-izquierdo, #logo-derecho {
-    width: 80px;
+  /* Centrado horizontal de los logos */
+  .logos-superiores {
+    text-align: center;
+    margin-top: 10px;
   }
-}
-body {
-  margin: 0;
-  padding: 0 10px;
-  font-family: Arial, sans-serif;
-  text-align: center;
+
+  #logo-izquierdo,
+  #logo-derecho {
+    position: static;
+    display: inline-block;
+    width: 60px;
+    margin: 0 8px;
+  }
 }
